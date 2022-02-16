@@ -27,6 +27,8 @@ public class StoreServiceImplementation implements StoreService {
 			String[] values = null;
 			while ((values = csvReader.readNext()) != null) {
 				list = Arrays.asList(values);
+				System.out.println(list.get(0));
+				System.out.println(" k"+storeId);
 				if (list.get(0).equals(storeId)) {
 					Date date = new SimpleDateFormat("dd-MM-yyyy").parse(list.get(4));
 					store.setStoreId(list.get(0));
@@ -35,6 +37,7 @@ public class StoreServiceImplementation implements StoreService {
 					store.setAddress(list.get(3));
 					store.setOpenedDate(date);
 					count++;
+					System.out.println("hi");
 				}
 
 			}
@@ -42,8 +45,9 @@ public class StoreServiceImplementation implements StoreService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if (count > 0)
+		if (count > 0) {
 			return store;
+		}
 		else
 			throw new CustomException("Please provide proper Store Id!!");
 
